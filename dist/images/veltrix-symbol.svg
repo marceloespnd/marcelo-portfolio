@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">Marcelo</title>
+  <defs>
+    <linearGradient id="metal" x1="18" y1="14" x2="108" y2="116" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f4f7fa"/>
+      <stop offset=".35" stop-color="#9ec7e6"/>
+      <stop offset=".7" stop-color="#46647f"/>
+      <stop offset="1" stop-color="#eef2f5"/>
+    </linearGradient>
+  </defs>
+  <path fill="none" stroke="url(#metal)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" d="M24 102V27l24 42 16-28 16 28 24-42v75"/>
+  <path fill="none" stroke="url(#metal)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" d="M38 95V48l10 18 16-28 16 28 10-18v47"/>
+</svg>

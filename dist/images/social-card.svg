@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630">
+      <stop stop-color="#061426"/>
+      <stop offset=".55" stop-color="#0d2036"/>
+      <stop offset="1" stop-color="#03101f"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#f4f7fa"/>
+      <stop offset=".45" stop-color="#9ec7e6"/>
+      <stop offset="1" stop-color="#46647f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1035" cy="95" r="240" fill="none" stroke="#9ec7e6" stroke-opacity=".12" stroke-width="2"/>
+  <text x="90" y="178" fill="#9ec7e6" font-family="Arial, sans-serif" font-size="25" font-weight="700" letter-spacing="4">QUALITY ENGINEERING · SDET · TEST AUTOMATION</text>
+  <text x="90" y="295" fill="#f5f7fb" font-family="Arial, sans-serif" font-size="72" font-weight="800">Marcelo Esperândio</text>
+  <text x="90" y="377" fill="#f5f7fb" font-family="Arial, sans-serif" font-size="72" font-weight="800">Lúcio</text>
+  <text x="92" y="456" fill="#c7d2df" font-family="Arial, sans-serif" font-size="31">Senior QA Engineer · AI Quality Engineering</text>
+  <rect x="90" y="513" width="1020" height="2" fill="url(#accent)" opacity=".6"/>
+  <text x="90" y="563" fill="#9ec7e6" font-family="Arial, sans-serif" font-size="24">marceloesnd.com</text>
+</svg>
