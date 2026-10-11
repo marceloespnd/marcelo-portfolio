@@ -495,7 +495,7 @@ function App() {
       <aside id="main-navigation" inert={isMobile && !mobileMenuOpen} ref={sidebarRef} className={`sidebar${mobileMenuOpen ? ' open' : ''}`} aria-label={language === 'PT' ? 'Navegação principal' : 'Main navigation'}>
         <button type="button" className="menu-close" onClick={closeMenu} aria-label={language === 'PT' ? 'Fechar menu' : 'Close menu'}><X size={20} /></button>
         <div className="logo">
-          <img src={imagePath('veltrix-symbol.svg')} alt="Veltrix" />
+          <img src={imagePath('mel-logo.png')} alt="MEL" />
         </div>
         <nav aria-label={language === 'PT' ? 'Seções do portfólio' : 'Portfolio sections'}>
           {navItems.map(item => (
@@ -597,7 +597,8 @@ function App() {
 
         </section>
 
-        <section className="section about" id="sobre" aria-labelledby="sobre-title">
+        <section className="section" id="sobre" aria-labelledby="sobre-title">
+          <div className="card about">
           <div className="about-copy">
             <h2 id="sobre-title" tabIndex="-1">{t.aboutTitle}</h2>
             <div className="about-text">
@@ -611,167 +612,178 @@ function App() {
               <li><Cloud size={16} aria-hidden="true"/> {t.aboutList[2]}</li>
             </ul>
           </div>
+          </div>
         </section>
 
         <section className="section case-studies" id="cases" aria-labelledby="cases-title">
-          <div className="section-heading text-pretty">
-            <h2 id="cases-title" tabIndex="-1">{t.casesTitle}</h2>
-            <p>{t.casesSubtitle}</p>
-          </div>
-          <div className="cases-grid">
-            {t.cases.map((item, index) => (
-              <article className="case-card" key={item.title}>
-                <div className="case-number" aria-hidden="true">0{index + 1}</div>
-                <h3>{item.title}</h3>
-                <dl>
-                  <div><dt>{t.caseLabels[0]}</dt><dd>{item.context}</dd></div>
-                  <div><dt>{t.caseLabels[1]}</dt><dd>{item.approach}</dd></div>
-                  <div><dt>{t.caseLabels[2]}</dt><dd>{item.result}</dd></div>
-                </dl>
-                <TagList className="case-stack" items={item.stack} />
-              </article>
-            ))}
+          <div className="card section-card">
+            <div className="section-heading text-pretty">
+              <h2 id="cases-title" tabIndex="-1">{t.casesTitle}</h2>
+              <p>{t.casesSubtitle}</p>
+            </div>
+            <div className="cases-grid">
+              {t.cases.map((item, index) => (
+                <article className="case-card" key={item.title}>
+                  <div className="case-number" aria-hidden="true">0{index + 1}</div>
+                  <h3>{item.title}</h3>
+                  <dl>
+                    <div><dt>{t.caseLabels[0]}</dt><dd>{item.context}</dd></div>
+                    <div><dt>{t.caseLabels[1]}</dt><dd>{item.approach}</dd></div>
+                    <div><dt>{t.caseLabels[2]}</dt><dd>{item.result}</dd></div>
+                  </dl>
+                  <TagList className="case-stack" items={item.stack} />
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
         <section className="section personal-projects" id="projetos" aria-labelledby="projects-title">
-          <div className="section-heading text-pretty">
-            <h2 id="projects-title" tabIndex="-1">{t.projectsTitle}</h2>
-            <p>{t.projectsSubtitle}</p>
-          </div>
-          <div className="projects-grid">
-            <article className="card project-card featured-project">
-              <div className="project-heading">
-                <span className="project-icon" aria-hidden="true"><Code2 size={24} /></span>
-              </div>
-              <h3>{t.featuredProjectTitle}</h3>
-              <p>{t.featuredProjectDescription}</p>
-              <TagList className="case-stack" items={['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Firebase', 'Chart.js']} />
-              <ActionLink variant="secondary" className="project-action" href="https://github.com/marceloespnd/quality-vision" target="_blank" rel="noreferrer">
-                <FaGithub size={18} aria-hidden="true" /> {language === 'PT' ? 'Ver Quality Vision no GitHub' : 'View Quality Vision on GitHub'}
-              </ActionLink>
-            </article>
-            <article className="card project-card">
-              <div className="project-heading">
-                <span className="project-icon" aria-hidden="true"><Briefcase size={24} /></span>
-              </div>
-              <h3>{t.dashboardTitle}</h3>
-              <p>{t.dashboardDescription}</p>
-              <TagList className="case-stack" items={['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Firebase']} />
-              <ActionLink variant="secondary" className="project-action" href="https://github.com/marceloespnd/veltrix-workspace" target="_blank" rel="noreferrer">
-                <FaGithub size={18} aria-hidden="true" /> {language === 'PT' ? 'Ver Veltrix Dashboard no GitHub' : 'View Veltrix Dashboard on GitHub'}
-              </ActionLink>
-            </article>
-            <article className="card project-card">
-              <div className="project-heading">
-                <span className="project-icon" aria-hidden="true"><Wallet size={24} /></span>
-              </div>
-              <h3>{t.oikonomiaTitle}</h3>
-              <p>{t.oikonomiaDescription}</p>
-              <TagList className="case-stack" items={['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Firebase']} />
-              <ActionLink variant="secondary" className="project-action" href="https://github.com/marceloespnd/oikonomia" target="_blank" rel="noreferrer">
-                <FaGithub size={18} aria-hidden="true" /> {language === 'PT' ? 'Ver Oikonomia no GitHub' : 'View Oikonomia on GitHub'}
-              </ActionLink>
-            </article>
+          <div className="card section-card">
+            <div className="section-heading text-pretty">
+              <h2 id="projects-title" tabIndex="-1">{t.projectsTitle}</h2>
+              <p>{t.projectsSubtitle}</p>
+            </div>
+            <div className="projects-grid">
+              <article className="card project-card featured-project">
+                <div className="project-heading">
+                  <span className="project-icon" aria-hidden="true"><Code2 size={24} /></span>
+                </div>
+                <h3>{t.featuredProjectTitle}</h3>
+                <p>{t.featuredProjectDescription}</p>
+                <TagList className="case-stack" items={['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Firebase', 'Chart.js']} />
+                <ActionLink variant="secondary" className="project-action" href="https://github.com/marceloespnd/quality-vision" target="_blank" rel="noreferrer">
+                  <FaGithub size={18} aria-hidden="true" /> {language === 'PT' ? 'Ver Quality Vision no GitHub' : 'View Quality Vision on GitHub'}
+                </ActionLink>
+              </article>
+              <article className="card project-card">
+                <div className="project-heading">
+                  <span className="project-icon" aria-hidden="true"><Briefcase size={24} /></span>
+                </div>
+                <h3>{t.dashboardTitle}</h3>
+                <p>{t.dashboardDescription}</p>
+                <TagList className="case-stack" items={['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Firebase']} />
+                <ActionLink variant="secondary" className="project-action" href="https://github.com/marceloespnd/veltrix-workspace" target="_blank" rel="noreferrer">
+                  <FaGithub size={18} aria-hidden="true" /> {language === 'PT' ? 'Ver Veltrix Dashboard no GitHub' : 'View Veltrix Dashboard on GitHub'}
+                </ActionLink>
+              </article>
+              <article className="card project-card">
+                <div className="project-heading">
+                  <span className="project-icon" aria-hidden="true"><Wallet size={24} /></span>
+                </div>
+                <h3>{t.oikonomiaTitle}</h3>
+                <p>{t.oikonomiaDescription}</p>
+                <TagList className="case-stack" items={['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Firebase']} />
+                <ActionLink variant="secondary" className="project-action" href="https://github.com/marceloespnd/oikonomia" target="_blank" rel="noreferrer">
+                  <FaGithub size={18} aria-hidden="true" /> {language === 'PT' ? 'Ver Oikonomia no GitHub' : 'View Oikonomia on GitHub'}
+                </ActionLink>
+              </article>
+            </div>
           </div>
         </section>
 
         <section className="section experience-section" id="experiencia" aria-labelledby="experiencia-title">
-          <div className="section-bubble">
-            <h2 id="experiencia-title" tabIndex="-1">{t.experienceTitle}</h2>
-          </div>
-          <div className="experiences">
-            {t.experiences.map(experience => (
-              <article className="experience" key={experience.company}>
-                <div className="experience-head">
-                  <h3 className="exp-title">
-                    <span>{experience.company}</span>
-                    <span className="experience-role">{experience.role}</span>
-                    <span className="experience-period">{experience.year}</span>
-                  </h3>
-                </div>
-                <p className="experience-summary">{experience.highlights[0]}</p>
-                <details className="experience-details">
-                  <summary>{language === 'PT' ? `Ver mais sobre ${experience.company}` : `More about ${experience.company}`}</summary>
-                  {experience.positions?.map(position => (
-                    <div className="experience-position" key={position.role}>
-                      <h4>{position.role}</h4>
-                      <p>{position.period}</p>
-                      {position.highlights && <ul>{position.highlights.map(highlight => <li key={highlight}><CheckCircle size={15} /><span>{highlight}</span></li>)}</ul>}
-                      {position.tools && <TagList className="case-stack" items={position.tools} />}
-                    </div>
-                  ))}
-                  {!experience.positions && <ul>
-                    {experience.highlights.slice(1).map(highlight => (
-                      <li key={highlight}>
-                        <CheckCircle size={15} />
-                        <span>{highlight}</span>
-                      </li>
+          <div className="card section-card">
+            <div className="section-bubble">
+              <h2 id="experiencia-title" tabIndex="-1">{t.experienceTitle}</h2>
+            </div>
+            <div className="experiences">
+              {t.experiences.map(experience => (
+                <article className="experience" key={experience.company}>
+                  <div className="experience-head">
+                    <h3 className="exp-title">
+                      <span>{experience.company}</span>
+                      <span className="experience-role">{experience.role}</span>
+                      <span className="experience-period">{experience.year}</span>
+                    </h3>
+                  </div>
+                  <p className="experience-summary">{experience.highlights[0]}</p>
+                  <details className="experience-details">
+                    <summary>{language === 'PT' ? `Ver mais sobre ${experience.company}` : `More about ${experience.company}`}</summary>
+                    {experience.positions?.map(position => (
+                      <div className="experience-position" key={position.role}>
+                        <h4>{position.role}</h4>
+                        <p>{position.period}</p>
+                        {position.highlights && <ul>{position.highlights.map(highlight => <li key={highlight}><CheckCircle size={15} /><span>{highlight}</span></li>)}</ul>}
+                        {position.tools && <TagList className="case-stack" items={position.tools} />}
+                      </div>
                     ))}
-                  </ul>}
-                  {experience.tools && (
-                    <div className="experience-tools">
-                      <p>{language === 'PT' ? 'Ferramentas e práticas' : 'Tools and practices'}</p>
-                      <TagList className="case-stack" items={experience.tools} />
-                    </div>
-                  )}
-                </details>
-              </article>
-            ))}
+                    {!experience.positions && <ul>
+                      {experience.highlights.slice(1).map(highlight => (
+                        <li key={highlight}>
+                          <CheckCircle size={15} />
+                          <span>{highlight}</span>
+                        </li>
+                      ))}
+                    </ul>}
+                    {experience.tools && (
+                      <div className="experience-tools">
+                        <p>{language === 'PT' ? 'Ferramentas e práticas' : 'Tools and practices'}</p>
+                        <TagList className="case-stack" items={experience.tools} />
+                      </div>
+                    )}
+                  </details>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
         <section className="section" id="tecnologias" aria-labelledby="tecnologias-title">
-          <div className="section-bubble"><h2 id="tecnologias-title" tabIndex="-1">{t.technologiesTitle}</h2></div>
-          <div className="skills-grid">
-            {t.skillsCategories.map(({ category, icon: Icon, items, featured, tools }) => (
-              <article key={category} className={`skill-category${featured ? ' featured' : ''}${tools ? ' ai-quality' : ''}`}>
-                <div className="skill-header">
-                  <Icon size={20} />
-                  <h3>{category}</h3>
-                </div>
-                <div className="skill-panel">
-                  {tools ? (
-                    <div className="ai-quality-content">
-                      <TagList className="ai-tools" items={tools} />
-                      <ul className="ai-use-cases">
-                        {items.map(item => (
-                          <li key={item}>
-                            <CheckCircle size={16} aria-hidden="true" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ) : (
-                    <TagList className="skill-items" items={items} />
-                  )}
-                </div>
-              </article>
-            ))}
+          <div className="card section-card">
+            <div className="section-bubble"><h2 id="tecnologias-title" tabIndex="-1">{t.technologiesTitle}</h2></div>
+            <div className="skills-grid">
+              {t.skillsCategories.map(({ category, icon: Icon, items, featured, tools }) => (
+                <article key={category} className={`skill-category${featured ? ' featured' : ''}${tools ? ' ai-quality' : ''}`}>
+                  <div className="skill-header">
+                    <Icon size={20} />
+                    <h3>{category}</h3>
+                  </div>
+                  <div className="skill-panel">
+                    {tools ? (
+                      <div className="ai-quality-content">
+                        <TagList className="ai-tools" items={tools} />
+                        <ul className="ai-use-cases">
+                          {items.map(item => (
+                            <li key={item}>
+                              <CheckCircle size={16} aria-hidden="true" />
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ) : (
+                      <TagList className="skill-items" items={items} />
+                    )}
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
         <section className="section education-section" id="formacao" aria-labelledby="formacao-title">
-          <div className="section-bubble"><h2 id="formacao-title" tabIndex="-1">{t.educationTitle}</h2></div>
-          <div className="education-grid">
-            {t.education.map(item => (
-              <article className="education-card" key={item.title}>
-                <div className="education-icon" aria-hidden="true">
-                  <GraduationCap size={22} />
-                </div>
-                <div className="education-content">
-                  <div className="education-heading">
-                    <div>
-                      <span>{item.place}</span>
-                      <h3>{item.title}</h3>
-                    </div>
-                    <strong>{item.status}</strong>
+          <div className="card section-card">
+            <div className="section-bubble"><h2 id="formacao-title" tabIndex="-1">{t.educationTitle}</h2></div>
+            <div className="education-grid">
+              {t.education.map(item => (
+                <article className="education-card" key={item.title}>
+                  <div className="education-icon" aria-hidden="true">
+                    <GraduationCap size={22} />
                   </div>
-                  <p>{item.period}</p>
-                </div>
-              </article>
-            ))}
+                  <div className="education-content">
+                    <div className="education-heading">
+                      <div>
+                        <span>{item.place}</span>
+                        <h3>{item.title}</h3>
+                      </div>
+                      <strong>{item.status}</strong>
+                    </div>
+                    <p>{item.period}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
