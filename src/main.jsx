@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { FaGithub, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa6'
 import {
+  Activity,
+  BookOpen,
   Bot,
   Briefcase,
   CheckCircle,
@@ -10,16 +12,16 @@ import {
   Code2,
   Download,
   GraduationCap,
+  House,
   Mail,
   MapPin,
   Menu,
   Moon,
-  Rocket,
-  Sparkles,
   ShieldCheck,
   Sun,
   Terminal,
   Workflow,
+  Wallet,
   X
 } from 'lucide-react'
 import './styles.css'
@@ -32,10 +34,10 @@ const socialImage = `${siteUrl}images/social-card.svg`
 
 const profile = {
   name: 'Marcelo Esperândio Lúcio',
-  title: 'Senior QA Engineer | SDET | Test Automation Engineer',
+  title: 'Quality Engineer Specialist · Senior QA Engineer · SDET',
   location: 'Barueri - SP, Brasil',
   email: 'marcelo.esperandio@outlook.com',
-  whatsapp: '5513991429394',
+  whatsapp: '5511921600112',
   linkedin: 'https://linkedin.com/in/marceloesperandio',
   github: 'https://github.com/marceloesperandio',
   photo: imagePath('marcelo-profile.jpg'),
@@ -79,63 +81,102 @@ const updateMeta = (selector, attributes) => {
 
 const content = {
   PT: {
-    themeMode: darkMode => `Modo ${darkMode ? 'noturno' : 'claro'}`,
-    themeAria: 'Alternar tema',
     languageAria: 'Selecionar idioma',
-    nav: ['Início', 'Sobre mim', 'Soluções', 'Tecnologias', 'Experiência', 'Cursos e certificações', 'Formação', 'Contato'],
-    heroText: years => `Senior QA Engineer com ${years} anos de experiência fortalecendo releases, pipelines e integrações críticas com automação, estratégia de testes e prevenção de falhas.`,
-    heroSupport: 'Atuo na interseção entre engenharia, produto e negócio para reduzir risco técnico, acelerar feedback e dar previsibilidade a times que entregam em escala.',
-    heroHighlights: ['Integrações críticas, APIs e contratos entre serviços', 'Automação backend, frontend e mobile conectada ao CI/CD', 'Shift Left, observabilidade e estratégia de qualidade orientada por evidências'],
-    trustTitle: 'Atuação em contextos como',
-    trustItems: ['Telecom', 'Banking', 'Sistemas distribuídos', 'Times de produto em escala'],
-    availability: 'Disponível para oportunidades em Quality Engineering, SDET e Test Automation com foco em impacto técnico e previsibilidade de entrega.',
-    talkButton: 'Agendar conversa',
-    casesButton: 'Ver estudos de caso',
+    nav: ['Início', 'Sobre mim', 'Estudos de caso', 'Tecnologias', 'Experiência', 'Cursos', 'Formação', 'Contato'],
+    heroText: years => `${years} anos em qualidade de software. Automação e estratégia de testes para integrações críticas e entregas confiáveis.`,
+    talkButton: 'Conversar pelo WhatsApp',
     resumeButton: 'Baixar currículo',
-    stats: ['Anos acelerando qualidade em software', 'Empresas enterprise no histórico', 'Tecnologias e ferramentas aplicadas', 'Setores críticos atendidos'],
-    aboutTitle: 'COMO EU AGREGO',
-    aboutText: 'Entro para organizar qualidade onde ela precisa influenciar resultado: clarificando riscos, estruturando automação útil, melhorando feedback no pipeline e conectando estratégia de testes ao contexto real do produto.',
-    aboutList: ['Traduzo riscos técnicos em decisões mais claras para o time', 'Estruturo automação que acelera feedback sem virar custo morto', 'Elevo maturidade de QA com colaboração, priorização e evidência'],
-    casesTitle: 'ESTUDOS DE CASO',
-    casesSubtitle: 'Recortes de atuação com foco no que um recrutador ou gestor quer enxergar: problema, decisão técnica e impacto na entrega.',
-    caseLabels: ['Desafio', 'O que eu fiz', 'Impacto na entrega'],
+    stats: ['Anos acelerando qualidade em software', 'Grandes empresas na trajetória', 'Tecnologias e ferramentas aplicadas', 'Setores críticos atendidos'],
+    aboutTitle: 'Como eu agrego',
+    aboutText: 'Conecto engenharia, produto e negócio para priorizar riscos e definir o que precisa ser validado antes de cada entrega.',
+    aboutList: ['Traduzo riscos técnicos em decisões mais claras para o time', 'Estruturo automação que agiliza o retorno dos testes e mantém seu valor ao longo do tempo', 'Elevo maturidade de QA com colaboração, priorização e evidência'],
+    casesTitle: 'Estudos de caso',
+    casesSubtitle: 'Desafios reais, decisões técnicas e resultados da minha atuação em qualidade de software.',
+    caseLabels: ['Desafio', 'Decisão técnica', 'Entrega'],
     cases: [
-      { title: 'Qualidade ponta a ponta em sistemas Oracle e Salesforce', context: 'Na VTAL, atuei em sistemas críticos com dependências entre Oracle e Salesforce que exigiam validação integrada e resposta rápida a risco.', approach: 'Mantive automações backend e frontend, executei testes funcionais, integrados, exploratórios e de contrato e trabalhei junto de desenvolvimento e produto na mitigação de riscos.', result: 'A qualidade passou a acompanhar o fluxo ponta a ponta com cobertura mais consistente sobre integrações sensíveis e decisões de entrega mais seguras.', stack: ['Salesforce', 'Oracle', 'Contract Testing', 'Exploratory Testing'] },
-      { title: 'Estratégia de automação e CI/CD para APIs e serviços', context: 'Na Sinqia, o desafio era estruturar testes automatizados e não funcionais em serviços distribuídos com necessidade de feedback mais previsível.', approach: 'Defini estratégias de testes, automatizei APIs, desenvolvi soluções internas com Spring Boot e conectei a execução a pipelines no Azure DevOps com apoio de indicadores no SonarQube.', result: 'O pipeline passou a refletir melhor a saúde técnica dos serviços, com feedback mais cedo no fluxo e maior previsibilidade para mudanças.', stack: ['Azure DevOps', 'Spring Boot', 'REST APIs', 'SonarQube'] },
-      { title: 'QA leadership com cloud, pipelines e observabilidade', context: 'No Banco PAN, a evolução da automação precisava acompanhar iniciativas de cloud, Kubernetes e maior complexidade entre times.', approach: 'Avancei automação frontend e backend com Java, Selenium e RestAssured, construí pipelines com Jenkins e apoiei validações produtivas com AWS CloudWatch como QA Lead.', result: 'As práticas de qualidade ficaram mais alinhadas à operação real do ambiente, com melhor sustentação técnica para entregas contínuas e iniciativas de escala.', stack: ['Java', 'Jenkins', 'AWS CloudWatch', 'Kubernetes'] }
+      { title: 'Qualidade ponta a ponta em sistemas Oracle e Salesforce', context: 'Validar fluxos críticos entre Oracle e Salesforce na V.tal.', approach: 'Combinei automação backend e frontend com testes integrados, exploratórios e de contrato.', result: 'Cobertura dos fluxos críticos entre os dois sistemas, incluindo os contratos entre serviços.', stack: ['Salesforce', 'Oracle', 'Testes de contrato', 'Testes exploratórios'] },
+      { title: 'Estratégia de automação e CI/CD para APIs e serviços', context: 'Estruturar testes automatizados e não funcionais para serviços distribuídos na Evertec.', approach: 'Automatizei APIs, desenvolvi soluções em Spring Boot e integrei testes ao Azure DevOps e indicadores ao SonarQube.', result: 'Execução de testes de APIs no fluxo de entrega e acompanhamento centralizado dos indicadores de qualidade.', stack: ['Azure DevOps', 'Spring Boot', 'APIs REST', 'SonarQube'] },
+      { title: 'Liderança em QA com nuvem, pipelines e observabilidade', context: 'Evoluir a automação durante a adoção de nuvem e Kubernetes no Banco PAN.', approach: 'Como QA Lead, conectei automação Java, Selenium e RestAssured a pipelines Jenkins e validações com CloudWatch.', result: 'Validações de qualidade nos pipelines e apoio à análise operacional durante a adoção de nuvem.', stack: ['Java', 'Jenkins', 'AWS CloudWatch', 'Kubernetes'] }
     ],
-    technologiesTitle: 'TECNOLOGIAS',
-    experienceTitle: 'EXPERIÊNCIA PROFISSIONAL',
-    certificationsTitle: 'CURSOS',
+    projectsNav: 'Projetos pessoais',
+    projectsTitle: 'Projetos pessoais',
+    projectsSubtitle: 'Aplicações que desenvolvo além da atuação profissional.',
+    featuredProjectTitle: 'Quality Vision',
+    featuredProjectDescription: 'Indicadores de qualidade, cenários de testes e histórico de defeitos em uma visão consolidada por projeto.',
+    featuredProjectAction: 'Ver projeto no GitHub',
+    dashboardTitle: 'Veltrix Dashboard',
+    dashboardDescription: 'Gestão de horas e faturamento por cliente e projeto, com fechamento mensal e relatórios em PDF.',
+    dashboardAction: 'Ver projeto no GitHub',
+    oikonomiaTitle: 'Oikonomia',
+    oikonomiaDescription: 'Controle financeiro pessoal com resumo mensal, lançamentos recorrentes, parcelamento e importação de movimentações.',
+    oikonomiaAction: 'Ver projeto no GitHub',
+    technologiesTitle: 'Tecnologias',
+    experienceTitle: 'Experiência profissional',
+    certificationsTitle: 'Cursos',
     certificationsSubtitle: 'Formação complementar em qualidade, automação e agilidade. Certificados disponíveis mediante solicitação.',
-    educationTitle: 'FORMAÇÃO ACADÊMICA',
-    contactTitle: 'VAMOS CONVERSAR?',
-    contactText: 'Se você precisa aumentar confiança em releases, melhorar automação ou estruturar qualidade para sistemas críticos, podemos conversar.',
+    educationTitle: 'Formação acadêmica',
+    contactTitle: 'Contato',
+    contactText: 'Se você precisa aumentar a confiança nas entregas, melhorar a automação ou estruturar qualidade para sistemas críticos, podemos conversar.',
     skipLink: 'Pular para o conteúdo',
-    copyright: `© Veltrix ${currentYear}. Portfólio profissional de Marcelo Esperândio.`,
+    copyright: `© Veltrix ${currentYear}. Portfólio profissional de Marcelo Esperândio Lucio.`,
     skillsCategories: [
-      { category: 'Linguagens & Automação', icon: Code2, items: ['Java', 'Python', 'JavaScript', 'Selenium', 'Playwright', 'Cypress', 'RestAssured', 'Appium'] },
-      { category: 'Qualidade & APIs', icon: ShieldCheck, items: ['Contract Testing', 'BDD', 'Cucumber', 'APIs REST', 'Testes exploratórios', 'Testes não funcionais'] },
-      { category: 'Cloud & Entrega', icon: Cloud, items: ['Azure DevOps', 'Jenkins', 'GitHub Actions', 'AWS', 'Kubernetes', 'CloudWatch', 'SonarQube', 'JMeter'] },
+      { category: 'Linguagens e automação', icon: Code2, items: ['Java', 'Python', 'JavaScript', 'Selenium', 'Playwright', 'Cypress', 'RestAssured', 'Appium'] },
+      { category: 'Qualidade e APIs', icon: ShieldCheck, items: ['Testes de contrato', 'BDD', 'Cucumber', 'APIs REST', 'Testes exploratórios'] },
+      { category: 'Testes não funcionais', icon: Activity, items: ['Testes de performance', 'Testes de carga', 'Testes de estresse', 'Apache JMeter', 'Grafana k6', 'Gatling'] },
+      { category: 'Nuvem e entrega', icon: Cloud, items: ['Azure DevOps', 'Jenkins', 'GitHub Actions', 'AWS', 'Kubernetes', 'CloudWatch', 'SonarQube'] },
       {
-        category: 'IA aplicada à Qualidade',
+        category: 'IA aplicada à qualidade',
         icon: Bot,
         featured: true,
-        tools: ['ChatGPT', 'Claude', 'Copilot', 'Gemini', 'Codex', 'GitHub Copilot'],
+        tools: ['ChatGPT', 'Claude', 'Gemini', 'Codex', 'GitHub Copilot'],
         items: [
           'Geração e revisão de cenários',
           'Análise de logs e falhas',
           'Apoio à automação e revisão de código',
-          'Testes e avaliação de aplicações com IA'
+          'Testes e avaliação de aplicações com IA',
+          'Criação de agentes de IA com foco em testes'
         ]
       }
     ],
     experiences: [
-      { company: 'VTAL', role: 'Quality Engineer', year: 'Ago/2025 - Mai/2026', location: 'São Paulo - SP', highlights: ['Ampliação da cobertura de qualidade em integrações Salesforce FSL e Oracle OSM/SOM, da validação funcional aos contratos entre serviços.', 'Automação backend incorporada ao fluxo de entrega para acelerar o feedback sobre regressões.', 'Riscos de integração antecipados por testes exploratórios, de APIs e colaboração contínua com desenvolvimento e produto.'] },
-      { company: 'Sinqia', role: 'Software Development Engineer in Test (SDET)', year: 'Nov/2023 - Mai/2025', location: 'São Paulo - SP', highlights: ['Fortalecimento da estratégia de testes backend, cobrindo requisitos funcionais e não funcionais.', 'Execução automatizada integrada ao Azure Pipelines, com qualidade acompanhada pelo SonarQube.', 'Maior previsibilidade entre serviços distribuídos por meio de APIs REST, Spring Boot e testes de contrato.'] },
-      { company: 'Banco PAN', role: 'Quality Engineer / Chapter QA', year: 'Out/2019 - Out/2023', location: 'São Paulo - SP', highlights: ['Evolução da automação frontend e backend com Java, Selenium, RestAssured, JUnit 5 e Cucumber.', 'Controles de qualidade incorporados à migração para Kubernetes e aos pipelines Jenkins, com análise no CloudWatch.', 'Padronização de práticas e estratégias ponta a ponta por meio da liderança técnica do Chapter QA.'] },
-      { company: 'Grupo Abril', role: 'Analista de Testes Sênior, Pleno e Júnior', year: 'Jan/2013 - Out/2019', location: 'São Paulo - SP', highlights: ['Expansão da regressão automatizada com Java, Selenium WebDriver e JUnit.', 'Cenários BDD/Gherkin conectando requisitos, testes funcionais e validações não funcionais.', 'Maior segurança nas mudanças por meio de homologação com usuários e acompanhamento em produção.'] },
-      { company: 'NET / Claro', role: 'Analista de Testes Júnior', year: 'Jul/2009 - Dez/2012', location: 'São Paulo - SP', highlights: ['Cobertura de fluxos críticos com testes funcionais, integrados e não funcionais.', 'Riscos em aplicações móveis e migrações de telecomunicações identificados antes da entrega.', 'Rastreabilidade de testes e defeitos com Oracle SQL Developer, SoapUI, TestLink e Bugzilla.'] }
+      { company: 'V.tal', role: 'Quality Engineer', employment: 'Tempo integral', year: 'Ago/2025 - Mai/2026', highlights: ['Ampliação da cobertura de qualidade em integrações Salesforce FSL e Oracle OSM/SOM, da validação funcional aos contratos entre serviços.', 'Automação backend incorporada ao fluxo de entrega para acelerar o feedback sobre regressões.', 'Riscos de integração antecipados por testes exploratórios, de APIs e colaboração contínua com desenvolvimento e produto.'] },
+      { company: 'Evertec', role: 'Software Development Engineer in Test (SDET)', employment: 'Tempo integral', location: 'São Paulo, Brasil · Remoto', year: 'Nov/2023 - Mai/2025', tools: ['RestAssured', 'AWS Web Services', 'BDD', 'Gherkin', 'Azure DevOps', 'Confluence', 'Jira', 'JMeter', 'Postman', 'Insomnia', 'SoapUI', 'Spring Boot', 'Mockito', 'JUnit', 'Teste unitário'], highlights: [
+        'Desenvolvimento de automação de testes para backend.',
+        'Execução de testes funcionais e não funcionais.',
+        'Criação e manutenção de pipelines CI/CD utilizando Azure Pipelines.',
+        'Criação de soluções para otimização de homologações, geração e validação de dados.',
+        'Monitoramento da qualidade do código com SonarQube.',
+        'Mapeamento de necessidades dos desenvolvedores e stakeholders.',
+        'Identificação e análise de gaps de qualidade.',
+        'Desenvolvimento de APIs com Spring Boot.',
+        'Elaboração de documentação técnica e fluxos de processo.',
+        'Implementação de melhorias em processos, técnicas e ferramentas da equipe e da operação, com foco no aprimoramento contínuo da qualidade.',
+        'Experiência em metodologias ágeis, com foco em Kanban.'
+      ] },
+      { company: 'Banco PAN', role: 'Quality Engineer | Automação de Testes, Performance e CI/CD', year: 'Out/2019 - Out/2023', tools: ['Selenium', 'RestAssured', 'JUnit', 'BDD', 'Gherkin', 'Cucumber', 'Allure', 'Zephyr', 'AWS Web Services', 'Azure DevOps', 'Jenkins', 'Confluence', 'Jira', 'MySQL', 'Athena', 'DynamoDB'], highlights: [
+        'Atuação desde o início do ciclo de desenvolvimento de software.',
+        'Validação de implantações em ambientes de produção.',
+        'Elaboração de estratégias de testes adequadas às diferentes necessidades das entregas.',
+        'Execução de testes funcionais (ponta a ponta, testes de fumaça e testes de componentes) e não funcionais (performance).',
+        'Automação de testes utilizando Java, Selenium WebDriver, RestAssured, JUnit 5 e Cucumber.',
+        'Geração de massas de dados para testes com SQL, NoSQL e ETL (Athena).',
+        'Colaboração na migração de aplicações de Elastic Beanstalk para Kubernetes.',
+        'Análise de logs de defeitos utilizando CloudWatch e monitoramento de sistemas em produção.',
+        'Liderança como QA e Chapter QA, colaborando com equipes de DevOps e desenvolvimento em ambientes ágeis (Kanban/Scrum).',
+        'Construção de pipelines CI/CD com Jenkins e participação no processo de entrega contínua.',
+        'Forte integração com stakeholders, incluindo áreas de negócios, Product Owners, Tech Leads e desenvolvedores.'
+      ] },
+      { company: 'Grupo Abril', role: 'Analista de testes sênior | pleno | júnior', employment: 'Tempo integral', location: 'São Paulo, Brasil', year: 'Jan/2013 - Out/2019', positions: [
+        { role: 'Analista de testes sênior', period: 'Set/2016 - Out/2019', mode: 'Híbrido' },
+        { role: 'Analista de testes pleno', period: 'Set/2014 - Set/2016', mode: 'Presencial', highlights: ['Automação de testes com Java, Selenium WebDriver e JUnit.', 'Execução de testes funcionais e não funcionais manuais.', 'Criação de scripts de teste com BDD/Gherkin e planejamento de cenários de testes.', 'Acompanhamento de homologação com o usuário final e monitoramento de mudanças em produção (GMUD).'], tools: ['Sikuli', 'MySQL'] },
+        { role: 'Analista de testes júnior', period: 'Jan/2013 - Set/2014', mode: 'Presencial', highlights: ['Planejamento de testes e criação de cenários para execução manual de testes funcionais e não funcionais.', 'Reporte de defeitos e status de testes para as equipes técnicas e de negócios.'] }
+      ], tools: ['Selenium', 'Salesforce', 'Mantis', 'TestLink', 'SQL Developer', 'SoapUI'], highlights: [
+        'Automação de testes utilizando Java, Selenium WebDriver e JUnit.',
+        'Execução de testes funcionais e não funcionais de forma manual.',
+        'Criação de scripts de teste com BDD/Gherkin e planejamento de cenários de teste.',
+        'Acompanhamento de homologações com o usuário final e monitoramento de mudanças em produção (GMUD).'
+      ] },
+      { company: 'NET / Claro', role: 'Analista de Testes Júnior', year: 'Jul/2009 - Dez/2012', highlights: ['Cobertura de fluxos críticos com testes funcionais, integrados e não funcionais.', 'Riscos em aplicações móveis e migrações de telecomunicações identificados antes da entrega.', 'Rastreabilidade de testes e defeitos com Oracle SQL Developer, SoapUI, TestLink e Bugzilla.'] }
     ],
     certifications: [
       { name: 'Gerenciamento de Testes: Plano de Testes e Gestão de Bugs', level: 'Test Management' },
@@ -149,58 +190,96 @@ const content = {
     ]
   },
   EN: {
-    themeMode: darkMode => `${darkMode ? 'Dark' : 'Light'} mode`,
-    themeAria: 'Toggle theme',
     languageAria: 'Select language',
-    nav: ['Home', 'About me', 'Solutions', 'Technologies', 'Experience', 'Courses & certifications', 'Education', 'Contact'],
-    heroText: years => `Senior QA Engineer with ${years} years of experience strengthening releases, pipelines, and critical integrations through automation, test strategy, and defect prevention.`,
-    heroSupport: 'I work across engineering, product, and business to reduce technical risk, speed up feedback, and give delivery teams more predictability at scale.',
-    heroHighlights: ['Critical integrations, APIs, and service contracts', 'Backend, frontend, and mobile automation tied to CI/CD', 'Shift Left, observability, and evidence-based quality strategy'],
-    trustTitle: 'Experienced across contexts such as',
-    trustItems: ['Telecom', 'Banking', 'Distributed systems', 'Scaled product teams'],
-    availability: 'Available for Quality Engineering, SDET, and Test Automation opportunities focused on technical impact and delivery predictability.',
-    talkButton: 'Schedule a call',
-    casesButton: 'View case studies',
-    resumeButton: 'Download résumé',
-    stats: ['Years accelerating software quality', 'Enterprise companies in experience', 'Technologies and tools applied', 'Critical sectors covered'],
-    aboutTitle: 'HOW I ADD VALUE',
-    aboutText: 'I focus quality where it changes outcomes: clarifying risk, building useful automation, improving pipeline feedback, and connecting test strategy to the real product context.',
-    aboutList: ['I turn technical risk into clearer delivery decisions', 'I build automation that speeds feedback without becoming dead weight', 'I raise QA maturity with collaboration, prioritization, and evidence'],
-    casesTitle: 'CASE STUDIES',
-    casesSubtitle: 'Snapshots designed to show what recruiters and hiring managers usually look for: problem, technical action, and delivery impact.',
-    caseLabels: ['Challenge', 'What I did', 'Delivery impact'],
+    nav: ['Home', 'About me', 'Case studies', 'Technologies', 'Experience', 'Courses', 'Education', 'Contact'],
+    heroText: years => `${years} years in software quality. Test automation and strategy for critical integrations and reliable releases.`,
+    talkButton: 'Chat on WhatsApp',
+    resumeButton: 'Download resume',
+    stats: ['Years in software quality', 'Enterprise companies worked with', 'Technologies and tools used', 'Critical industries served'],
+    aboutTitle: 'How I add value',
+    aboutText: 'I connect engineering, product, and business to prioritize risks and define what needs validation before each release.',
+    aboutList: ['I turn technical risk into clearer delivery decisions', 'I build automation that delivers faster test feedback and remains valuable over time', 'I raise QA maturity with collaboration, prioritization, and evidence'],
+    casesTitle: 'Case studies',
+    casesSubtitle: 'Real challenges, technical decisions, and outcomes from my work in software quality.',
+    caseLabels: ['Challenge', 'Technical decision', 'Delivery'],
     cases: [
-      { title: 'End-to-end quality for Oracle and Salesforce systems', context: 'At VTAL, I worked on critical Oracle and Salesforce systems with cross-service dependencies that required integrated validation and rapid risk response.', approach: 'I maintained backend and frontend automation, executed functional, integration, exploratory, and contract testing, and worked closely with engineering and product to mitigate quality risks.', result: 'Quality followed the flow end to end, giving the team more consistent coverage over sensitive integrations and safer delivery decisions.', stack: ['Salesforce', 'Oracle', 'Contract Testing', 'Exploratory Testing'] },
-      { title: 'Automation and CI/CD strategy for APIs and services', context: 'At Sinqia, the challenge was to structure automated and non-functional testing for distributed services that needed more predictable feedback.', approach: 'I defined testing strategies, automated APIs, built internal solutions with Spring Boot, and connected execution to Azure DevOps pipelines supported by SonarQube indicators.', result: 'The pipeline became a stronger reflection of service health, bringing feedback earlier into the flow and improving predictability for change.', stack: ['Azure DevOps', 'Spring Boot', 'REST APIs', 'SonarQube'] },
-      { title: 'QA leadership across cloud, pipelines, and observability', context: 'At Banco PAN, automation maturity had to evolve alongside cloud initiatives, Kubernetes adoption, and growing cross-team complexity.', approach: 'I advanced frontend and backend automation with Java, Selenium, and RestAssured, built Jenkins pipelines, and supported production validation with AWS CloudWatch as a QA Lead.', result: 'Quality practices became more aligned with real operational signals, improving technical support for continuous delivery and scale initiatives.', stack: ['Java', 'Jenkins', 'AWS CloudWatch', 'Kubernetes'] }
+      { title: 'End-to-end quality for Oracle and Salesforce systems', context: 'Validate critical workflows between Oracle and Salesforce at V.tal.', approach: 'Combined backend and frontend automation with integration, exploratory, and contract testing.', result: 'Coverage of critical workflows across both systems, including service contracts.', stack: ['Salesforce', 'Oracle', 'Contract Testing', 'Exploratory Testing'] },
+      { title: 'Automation and CI/CD strategy for APIs and services', context: 'Structure automated and non-functional testing for distributed services at Evertec.', approach: 'Automated APIs, built Spring Boot solutions, and integrated tests into Azure DevOps with SonarQube metrics.', result: 'API test execution in the delivery flow with centralized quality indicators.', stack: ['Azure DevOps', 'Spring Boot', 'REST APIs', 'SonarQube'] },
+      { title: 'QA leadership across cloud, pipelines, and observability', context: 'Evolve automation during cloud and Kubernetes adoption at Banco PAN.', approach: 'As QA Lead, connected Java, Selenium, and RestAssured automation to Jenkins pipelines and CloudWatch validation.', result: 'Quality checks in delivery pipelines and operational analysis during cloud adoption.', stack: ['Java', 'Jenkins', 'AWS CloudWatch', 'Kubernetes'] }
     ],
-    technologiesTitle: 'TECHNOLOGIES',
-    experienceTitle: 'PROFESSIONAL EXPERIENCE',
-    certificationsTitle: 'COURSES',
+    projectsNav: 'Personal projects',
+    projectsTitle: 'Personal projects',
+    projectsSubtitle: 'Applications I build beyond my professional work.',
+    featuredProjectTitle: 'Quality Vision',
+    featuredProjectDescription: 'Quality metrics, test scenarios, and defect history in a unified view for each project.',
+    featuredProjectAction: 'View project on GitHub',
+    dashboardTitle: 'Veltrix Dashboard',
+    dashboardDescription: 'Time tracking and billing by client and project, with monthly billing closeouts and PDF reports.',
+    dashboardAction: 'View project on GitHub',
+    oikonomiaTitle: 'Oikonomia',
+    oikonomiaDescription: 'Personal finance tracking with monthly summaries, recurring entries, installments, and transaction imports.',
+    oikonomiaAction: 'View project on GitHub',
+    technologiesTitle: 'Technologies',
+    experienceTitle: 'Professional experience',
+    certificationsTitle: 'Courses',
     certificationsSubtitle: 'Continuing education in quality, automation, and agile practices. Certificates available upon request.',
-    educationTitle: 'EDUCATION',
-    contactTitle: 'LET’S TALK?',
+    educationTitle: 'Education',
+    contactTitle: 'Contact',
     contactText: 'If you need stronger release confidence, better automation, or a clearer quality strategy for critical systems, let’s talk.',
     skipLink: 'Skip to content',
-    copyright: `© Veltrix ${currentYear}. Marcelo Esperândio’s professional portfolio.`,
+    copyright: `© Veltrix ${currentYear}. Marcelo Esperândio Lucio’s professional portfolio.`,
     skillsCategories: [
       { category: 'Languages & Automation', icon: Code2, items: ['Java', 'Python', 'JavaScript', 'Selenium', 'Playwright', 'Cypress', 'RestAssured', 'Appium'] },
-      { category: 'Quality & APIs', icon: ShieldCheck, items: ['Contract Testing', 'BDD', 'Cucumber', 'REST APIs', 'Exploratory Testing', 'Non-functional Testing'] },
-      { category: 'Cloud & Delivery', icon: Cloud, items: ['Azure DevOps', 'Jenkins', 'GitHub Actions', 'AWS', 'Kubernetes', 'CloudWatch', 'SonarQube', 'JMeter'] },
+      { category: 'Quality & APIs', icon: ShieldCheck, items: ['Contract Testing', 'BDD', 'Cucumber', 'REST APIs', 'Exploratory Testing'] },
+      { category: 'Non-functional Testing', icon: Activity, items: ['Performance Testing', 'Load Testing', 'Stress Testing', 'Apache JMeter', 'Grafana k6', 'Gatling'] },
+      { category: 'Cloud & Delivery', icon: Cloud, items: ['Azure DevOps', 'Jenkins', 'GitHub Actions', 'AWS', 'Kubernetes', 'CloudWatch', 'SonarQube'] },
       {
-        category: 'AI applied to Quality Engineering',
+        category: 'AI for Quality Engineering',
         icon: Bot,
         featured: true,
-        tools: ['ChatGPT', 'Claude', 'Copilot', 'Gemini', 'Codex', 'GitHub Copilot'],
-        items: ['Test scenario generation and review', 'Log and failure analysis', 'Automation and code review support', 'AI application testing and evaluation']
+        tools: ['ChatGPT', 'Claude', 'Gemini', 'Codex', 'GitHub Copilot'],
+        items: ['Test scenario generation and review', 'Log and failure analysis', 'Automation and code review support', 'AI application testing and evaluation', 'AI agent creation focused on testing']
       }
     ],
     experiences: [
-      { company: 'VTAL', role: 'Quality Engineer', year: 'Aug/2025 - May/2026', location: 'São Paulo - SP', highlights: ['Expanded quality coverage across Salesforce FSL and Oracle OSM/SOM integrations, from functional validation to service contracts.', 'Embedded backend automation into the delivery flow to accelerate regression feedback.', 'Anticipated integration risks through exploratory and API testing in continuous collaboration with engineering and product.'] },
-      { company: 'Sinqia', role: 'Software Development Engineer in Test (SDET)', year: 'Nov/2023 - May/2025', location: 'São Paulo - SP', highlights: ['Strengthened the backend testing strategy across functional and non-functional requirements.', 'Integrated automated execution into Azure Pipelines, with quality monitored through SonarQube.', 'Improved predictability across distributed services with REST APIs, Spring Boot, and contract testing.'] },
-      { company: 'Banco PAN', role: 'Quality Engineer / QA Chapter Lead', year: 'Oct/2019 - Oct/2023', location: 'São Paulo - SP', highlights: ['Advanced frontend and backend automation with Java, Selenium, RestAssured, JUnit 5, and Cucumber.', 'Embedded quality controls into the Kubernetes migration and Jenkins pipelines, supported by CloudWatch analysis.', 'Standardized practices and end-to-end strategies through technical leadership of the QA Chapter.'] },
-      { company: 'Grupo Abril', role: 'Senior, Mid-level, and Junior Test Analyst', year: 'Jan/2013 - Oct/2019', location: 'São Paulo - SP', highlights: ['Expanded automated regression coverage with Java, Selenium WebDriver, and JUnit.', 'Connected requirements, functional testing, and non-functional validation through BDD/Gherkin scenarios.', 'Increased confidence in changes through user acceptance testing and production monitoring.'] },
-      { company: 'NET / Claro', role: 'Junior Test Analyst', year: 'Jul/2009 - Dec/2012', location: 'São Paulo - SP', highlights: ['Covered critical flows with functional, integration, and non-functional testing.', 'Identified risks in mobile applications and telecommunications migrations before release.', 'Improved test and defect traceability with Oracle SQL Developer, SoapUI, TestLink, and Bugzilla.'] }
+      { company: 'V.tal', role: 'Quality Engineer', employment: 'Full-time', year: 'Aug/2025 - May/2026', highlights: ['Expanded quality coverage across Salesforce FSL and Oracle OSM/SOM integrations, from functional validation to service contracts.', 'Embedded backend automation into the delivery flow to accelerate regression feedback.', 'Anticipated integration risks through exploratory and API testing in continuous collaboration with engineering and product.'] },
+      { company: 'Evertec', role: 'Software Development Engineer in Test (SDET)', employment: 'Full-time', location: 'São Paulo, Brazil · Remote', year: 'Nov/2023 - May/2025', tools: ['RestAssured', 'AWS Web Services', 'BDD', 'Gherkin', 'Azure DevOps', 'Confluence', 'Jira', 'JMeter', 'Postman', 'Insomnia', 'SoapUI', 'Spring Boot', 'Mockito', 'JUnit', 'Unit testing'], highlights: [
+        'Developed backend test automation.',
+        'Executed functional and non-functional tests.',
+        'Created and maintained CI/CD pipelines using Azure Pipelines.',
+        'Created solutions to streamline acceptance testing, data generation, and data validation.',
+        'Monitored code quality with SonarQube.',
+        'Identified developer and stakeholder needs.',
+        'Identified and analyzed quality gaps.',
+        'Developed APIs with Spring Boot.',
+        'Produced technical documentation and process flows.',
+        'Improved team and operational processes, techniques, and tools, with a focus on continuous quality improvement.',
+        'Worked with agile methodologies, focusing on Kanban.'
+      ] },
+      { company: 'Banco PAN', role: 'Quality Engineer | Test Automation, Performance and CI/CD', year: 'Oct/2019 - Oct/2023', tools: ['Selenium', 'RestAssured', 'JUnit', 'BDD', 'Gherkin', 'Cucumber', 'Allure', 'Zephyr', 'AWS Web Services', 'Azure DevOps', 'Jenkins', 'Confluence', 'Jira', 'MySQL', 'Athena', 'DynamoDB'], highlights: [
+        'Contributed from the beginning of the software development lifecycle.',
+        'Validated deployments in production environments.',
+        'Designed test strategies tailored to different delivery requirements.',
+        'Executed functional tests (end-to-end, smoke tests, and component tests) and non-functional tests (performance).',
+        'Automated tests using Java, Selenium WebDriver, RestAssured, JUnit 5, and Cucumber.',
+        'Generated test datasets using SQL, NoSQL, and ETL (Athena).',
+        'Collaborated on migrating applications from Elastic Beanstalk to Kubernetes.',
+        'Analyzed defect logs using CloudWatch and monitored production systems.',
+        'Provided QA and QA Chapter leadership, collaborating with DevOps and development teams in agile environments (Kanban/Scrum).',
+        'Built CI/CD pipelines with Jenkins and participated in continuous delivery.',
+        'Worked closely with stakeholders, including business teams, Product Owners, Tech Leads, and developers.'
+      ] },
+      { company: 'Grupo Abril', role: 'Senior | Mid-level | Junior Test Analyst', employment: 'Full-time', location: 'São Paulo, Brazil', year: 'Jan/2013 - Oct/2019', positions: [
+        { role: 'Senior Test Analyst', period: 'Sep/2016 - Oct/2019', mode: 'Hybrid' },
+        { role: 'Mid-level Test Analyst', period: 'Sep/2014 - Sep/2016', mode: 'On-site', highlights: ['Automated tests using Java, Selenium WebDriver, and JUnit.', 'Executed manual functional and non-functional tests.', 'Created test scripts using BDD/Gherkin and planned test scenarios.', 'Supported user acceptance testing with end users and monitored production changes (GMUD).'], tools: ['Sikuli', 'MySQL'] },
+        { role: 'Junior Test Analyst', period: 'Jan/2013 - Sep/2014', mode: 'On-site', highlights: ['Planned tests and created scenarios for manual functional and non-functional testing.', 'Reported defects and test status to technical and business teams.'] }
+      ], tools: ['Selenium', 'Salesforce', 'Mantis', 'TestLink', 'SQL Developer', 'SoapUI'], highlights: [
+        'Automated tests using Java, Selenium WebDriver, and JUnit.',
+        'Executed manual functional and non-functional tests.',
+        'Created test scripts using BDD/Gherkin and planned test scenarios.',
+        'Supported user acceptance testing with end users and monitored production changes (GMUD).'
+      ] },
+      { company: 'NET / Claro', role: 'Junior Test Analyst', year: 'Jul/2009 - Dec/2012', highlights: ['Covered critical flows with functional, integration, and non-functional testing.', 'Identified risks in mobile applications and telecommunications migrations before release.', 'Improved test and defect traceability with Oracle SQL Developer, SoapUI, TestLink, and Bugzilla.'] }
     ],
     certifications: [
       { name: 'Test Management: Test Planning and Bug Management', level: 'Test Management' },
@@ -215,18 +294,133 @@ const content = {
   }
 }
 
+function ActionLink({ variant = 'secondary', className = '', children, ...props }) {
+  return <a className={`button button--${variant} font-semibold tracking-tight ${className}`} {...props}>{children}</a>
+}
+
+function TagList({ items, className }) {
+  return <ul className={className}>{items.map(item => <li key={item}>{item}</li>)}</ul>
+}
+
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
     const saved = localStorage.getItem('portfolio-theme')
     return saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches
   })
-  const [language, setLanguage] = useState(() => localStorage.getItem('portfolio-language') || 'PT')
+  const [language, setLanguage] = useState(() => {
+    const saved = localStorage.getItem('portfolio-language')
+    if (saved === 'PT' || saved === 'EN') return saved
+    return (navigator.languages?.[0] || navigator.language).toLowerCase().startsWith('pt') ? 'PT' : 'EN'
+  })
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 980px)').matches)
+  const [activeSection, setActiveSection] = useState('home')
   const [profileImageError, setProfileImageError] = useState(false)
   const menuButtonRef = useRef(null)
   const sidebarRef = useRef(null)
+  const closeMenu = () => {
+    setMobileMenuOpen(false)
+    requestAnimationFrame(() => menuButtonRef.current?.focus())
+  }
+  const navigateTo = (event, target) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button > 0) return
+    event.preventDefault()
+    setMobileMenuOpen(false)
+    window.history.pushState(null, '', `#${target}`)
+    requestAnimationFrame(() => {
+      const section = document.getElementById(target)
+      const heading = section?.querySelector('h1, h2')
+      heading?.focus({ preventScroll: true })
+      section?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })
+    })
+  }
   const t = content[language]
   const careerYears = getCareerYears()
+
+  useEffect(() => {
+    const media = window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)')
+    const cards = [...document.querySelectorAll('.card, .case-card, .skill-category, .experience, .education-card, .stat-card, .profileCard, .sidebar nav')]
+    const bindings = cards.map(card => {
+      let frame = 0
+      let bounds
+      const reset = () => {
+        cancelAnimationFrame(frame)
+        bounds = undefined
+        card.classList.remove('is-tilting')
+        for (const property of ['--tilt-x', '--tilt-y', '--glare-x', '--glare-y']) card.style.removeProperty(property)
+      }
+      const enter = () => { bounds = card.getBoundingClientRect() }
+      const move = event => {
+        if (!media.matches || event.pointerType !== 'mouse') return
+        bounds ||= card.getBoundingClientRect()
+        const x = Math.max(0, Math.min(1, (event.clientX - bounds.left) / bounds.width))
+        const y = Math.max(0, Math.min(1, (event.clientY - bounds.top) / bounds.height))
+        cancelAnimationFrame(frame)
+        frame = requestAnimationFrame(() => {
+          card.style.setProperty('--tilt-x', `${(0.5 - y) * 8}deg`)
+          card.style.setProperty('--tilt-y', `${(x - 0.5) * 8}deg`)
+          card.style.setProperty('--glare-x', `${x * 100}%`)
+          card.style.setProperty('--glare-y', `${y * 100}%`)
+          card.classList.add('is-tilting')
+        })
+      }
+      card.classList.add('tilt-card')
+      card.addEventListener('pointerenter', enter)
+      card.addEventListener('pointermove', move)
+      card.addEventListener('pointerleave', reset)
+      card.addEventListener('pointercancel', reset)
+      return { card, enter, move, reset }
+    })
+    const resetAll = () => bindings.forEach(binding => binding.reset())
+    media.addEventListener('change', resetAll)
+    window.addEventListener('scroll', resetAll, { passive: true })
+    window.addEventListener('resize', resetAll)
+    return () => {
+      media.removeEventListener('change', resetAll)
+      window.removeEventListener('scroll', resetAll)
+      window.removeEventListener('resize', resetAll)
+      bindings.forEach(({ card, enter, move, reset }) => {
+        reset()
+        card.classList.remove('tilt-card')
+        card.removeEventListener('pointerenter', enter)
+        card.removeEventListener('pointermove', move)
+        card.removeEventListener('pointerleave', reset)
+        card.removeEventListener('pointercancel', reset)
+      })
+    }
+  }, [])
+
+  useEffect(() => {
+    const media = window.matchMedia('(max-width: 980px)')
+    const update = () => {
+      setIsMobile(media.matches)
+      if (!media.matches) setMobileMenuOpen(false)
+    }
+    media.addEventListener('change', update)
+    return () => media.removeEventListener('change', update)
+  }, [])
+
+  useEffect(() => {
+    const sections = [...document.querySelectorAll('.main-content section[id], .main-content article[id]')]
+    const update = () => {
+      const scrollRoot = document.scrollingElement || document.documentElement
+      const atPageEnd = scrollRoot.scrollHeight > window.innerHeight &&
+        window.scrollY + window.innerHeight >= scrollRoot.scrollHeight - 2
+      const current = atPageEnd
+        ? sections.at(-1)
+        : sections.filter(section => section.getBoundingClientRect().top <= 160).at(-1)
+      const section = current?.id || 'home'
+      const group = { sobre: 'home' }
+      setActiveSection(group[section] || section)
+    }
+    window.addEventListener('scroll', update, { passive: true })
+    window.addEventListener('resize', update)
+    update()
+    return () => {
+      window.removeEventListener('scroll', update)
+      window.removeEventListener('resize', update)
+    }
+  }, [])
 
   useEffect(() => {
     const seo = seoContent[language]
@@ -250,13 +444,15 @@ function App() {
   }, [darkMode])
 
   useEffect(() => {
-    if (!mobileMenuOpen) return undefined
+    if (!mobileMenuOpen || !isMobile) return undefined
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
     const focusable = sidebarRef.current?.querySelectorAll('a, button')
     focusable?.[0]?.focus()
     const handleKeyDown = event => {
       if (event.key === 'Escape') {
         setMobileMenuOpen(false)
-        menuButtonRef.current?.focus()
+        requestAnimationFrame(() => menuButtonRef.current?.focus())
       }
       if (event.key === 'Tab' && focusable?.length) {
         const first = focusable[0]
@@ -271,49 +467,54 @@ function App() {
       }
     }
     document.addEventListener('keydown', handleKeyDown)
-    return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [mobileMenuOpen])
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = previousOverflow
+    }
+  }, [mobileMenuOpen, isMobile])
 
   const navItems = [
-    { label: t.nav[0], target: 'home' },
-    { label: t.nav[1], target: 'sobre' },
-    { label: t.nav[2], target: 'cases' },
-    { label: t.nav[4], target: 'experiencia' },
-    { label: t.nav[3], target: 'tecnologias' },
-    { label: t.nav[6], target: 'formacao' },
-    { label: t.nav[5], target: 'certificacoes' },
-    { label: t.nav[7], target: 'contato' }
+    { label: language === 'PT' ? 'Apresentação' : 'Overview', target: 'home', icon: House },
+    { label: t.nav[2], target: 'cases', icon: ShieldCheck },
+    { label: t.projectsNav, target: 'projetos', icon: Code2 },
+    { label: language === 'PT' ? 'Trajetória' : 'Background', target: 'experiencia', icon: Briefcase },
+    { label: t.nav[7], target: 'contato', icon: Mail }
   ]
 
   return (
-    <main className={darkMode ? 'theme-dark' : 'theme-light'}>
+    <div className={`portfolio ${darkMode ? 'theme-dark' : 'theme-light'}`}>
       <a className="skip-link" href="#main-content">{t.skipLink}</a>
       {mobileMenuOpen && (
         <button
           type="button"
           className="menu-backdrop"
           aria-label={language === 'PT' ? 'Fechar menu' : 'Close menu'}
-          onClick={() => setMobileMenuOpen(false)}
+          onClick={closeMenu}
         />
       )}
-      <aside ref={sidebarRef} className={`sidebar${mobileMenuOpen ? ' open' : ''}`} aria-label={language === 'PT' ? 'Navegação principal' : 'Main navigation'}>
+      <aside id="main-navigation" inert={isMobile && !mobileMenuOpen} ref={sidebarRef} className={`sidebar${mobileMenuOpen ? ' open' : ''}`} aria-label={language === 'PT' ? 'Navegação principal' : 'Main navigation'}>
+        <button type="button" className="menu-close" onClick={closeMenu} aria-label={language === 'PT' ? 'Fechar menu' : 'Close menu'}><X size={20} /></button>
         <div className="logo">
           <img src={imagePath('veltrix-symbol.svg')} alt="Veltrix" />
         </div>
-        <nav>
+        <nav aria-label={language === 'PT' ? 'Seções do portfólio' : 'Portfolio sections'}>
           {navItems.map(item => (
-            <a key={item.target} href={`#${item.target}`} onClick={() => setMobileMenuOpen(false)}>{item.label}</a>
+            <React.Fragment key={item.target}><a aria-current={activeSection === item.target ? 'location' : undefined} key={item.target} href={`#${item.target}`} onClick={event => navigateTo(event, item.target)}><item.icon size={18} aria-hidden="true" /><span>{item.label}</span></a>
+            {item.target === 'experiencia' && <div className="nav-subsections">
+              {[{ target: 'tecnologias', label: t.nav[3], icon: Code }, { target: 'formacao', label: t.nav[6], icon: GraduationCap }, { target: 'certificacoes', label: t.nav[5], icon: BookOpen }].map(sub => <a key={sub.target} href={`#${sub.target}`} aria-current={activeSection === sub.target ? 'location' : undefined} onClick={event => navigateTo(event, sub.target)}><sub.icon size={18} aria-hidden="true" /><span>{sub.label}</span></a>)}
+            </div>}</React.Fragment>
           ))}
         </nav>
       </aside>
 
-      <section className="content" id="main-content" tabIndex="-1">
+      <section inert={isMobile && mobileMenuOpen} className="content">
         <header className="topbar">
           <button
             ref={menuButtonRef}
             type="button"
             className="mobile-menu-toggle"
             aria-label={mobileMenuOpen ? (language === 'PT' ? 'Fechar menu' : 'Close menu') : (language === 'PT' ? 'Abrir menu' : 'Open menu')}
+            aria-controls="main-navigation"
             aria-expanded={mobileMenuOpen}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
@@ -333,55 +534,35 @@ function App() {
                 </button>
               ))}
             </div>
-            <button className="theme-toggle" onClick={() => setDarkMode(!darkMode)} aria-label={t.themeAria}>
+            <button className="theme-toggle" onClick={() => setDarkMode(!darkMode)} aria-pressed={darkMode} aria-label={language === 'PT' ? 'Tema escuro' : 'Dark theme'}>
               {darkMode ? <Moon size={18} /> : <Sun size={18} />}
-              <span>{t.themeMode(darkMode)}</span>
+              <span>{language === 'PT' ? 'Tema escuro' : 'Dark theme'}</span>
             </button>
           </div>
         </header>
 
-        <section className="hero" id="home">
-          <div className="hero-copy">
+        <main className="main-content" id="main-content" tabIndex="-1">
+        <section className="hero" id="home" aria-labelledby="home-title">
+          <div className="hero-copy min-w-0">
             <p className="eyebrow">{profile.title}</p>
-            <h1>{profile.name}</h1>
-            <p className="heroText">{t.heroText(careerYears)}</p>
-            <p className="heroSupport">{t.heroSupport}</p>
-            <div className="hero-highlights" aria-label={language === 'PT' ? 'Principais áreas de impacto' : 'Primary impact areas'}>
-              {t.heroHighlights.map(item => (
-                <div key={item} className="hero-highlight">
-                  <CheckCircle size={16} />
-                  <span>{item}</span>
-                </div>
-              ))}
+            <div className="hero-bubble">
+              <h1 id="home-title" tabIndex="-1">{profile.name}</h1>
             </div>
-            <p className="availability"><span aria-hidden="true"></span>{t.availability}</p>
+            <p className="heroText text-pretty">{t.heroText(careerYears)}</p>
+            <p className="availability"><span aria-hidden="true"></span>{language === 'PT' ? 'Disponível para oportunidades em Quality Engineering e SDET.' : 'Available for Quality Engineering and SDET opportunities.'}</p>
             <div className="actions" aria-label={language === 'PT' ? 'Ações principais e perfis profissionais' : 'Primary actions and professional profiles'}>
-              <a className="button primary-action main-cta" href={`https://wa.me/${profile.whatsapp}`} target="_blank" rel="noreferrer">
+              <ActionLink variant="primary" href={`https://wa.me/${profile.whatsapp}`} target="_blank" rel="noreferrer">
                 <FaWhatsapp size={18}/> {t.talkButton}
-              </a>
-              <a className="button ghost primary-action" href="#cases">
-                <Sparkles size={18}/> {t.casesButton}
-              </a>
-              <a
-                className="button subtle-action"
+              </ActionLink>
+              <ActionLink
+                variant="secondary"
                 href={profile.resume[language]}
                 download={language === 'PT' ? 'Curriculo-Marcelo-Esperandio.pdf' : 'Resume-Marcelo-Esperandio.pdf'}
               >
                 <Download size={18}/> {t.resumeButton}
-              </a>
-              <a className="button ghost social-action" href={profile.linkedin} target="_blank" rel="noreferrer">
-                <FaLinkedinIn size={18}/> <span>LinkedIn</span>
-              </a>
-              <a className="button ghost social-action" href={profile.github} target="_blank" rel="noreferrer">
-                <FaGithub size={18}/> <span>GitHub</span>
-              </a>
+              </ActionLink>
             </div>
-            <div className="trust-strip" aria-label={t.trustTitle}>
-              <strong>{t.trustTitle}</strong>
-              <div>
-                {t.trustItems.map(item => <span key={item}>{item}</span>)}
-              </div>
-            </div>
+
           </div>
           <div className="hero-aside">
             <div className="profileCard">
@@ -399,55 +580,42 @@ function App() {
                 />
               )}
             </div>
-            <div className="recruiter-card">
-              <p>{language === 'PT' ? 'Valor percebido rápido para recrutadores e gestores' : 'Fast recruiter and hiring-manager snapshot'}</p>
-              <ul>
-                <li>{language === 'PT' ? 'SDET e QA Engineer com prática em frontend, backend, APIs e mobile' : 'SDET and QA Engineer with hands-on frontend, backend, API, and mobile coverage'}</li>
-                <li>{language === 'PT' ? 'Experiência em Azure DevOps, Jenkins, AWS, observabilidade e Shift Left' : 'Experience with Azure DevOps, Jenkins, AWS, observability, and Shift Left practices'}</li>
-                <li>{language === 'PT' ? 'Atuação em telecom, financeiro, mídia e tecnologia' : 'Experience across telecom, finance, media, and technology contexts'}</li>
-              </ul>
-            </div>
+
           </div>
         </section>
 
         <section className="stats">
-          <article>
+          <a className="stat-card" href="#projetos" onClick={event => navigateTo(event, 'projetos')}><div className="stat-icon"><Code2 size={20}/></div><div className="stat-copy"><strong>3</strong><span>{t.projectsNav}<small>{language === 'PT' ? 'Explorar projetos →' : 'Explore projects →'}</small></span></div></a>
+          <a className="stat-card stat-link" href="#experiencia" onClick={event => navigateTo(event, 'experiencia')}>
             <div className="stat-icon"><Briefcase size={20}/></div>
-            <div className="stat-copy"><strong>{careerYears}</strong><span>{t.stats[0]}</span></div>
-          </article>
-          <a className="stat-card stat-link" href="#experiencia" aria-label={`${t.stats[1]}: ${t.experienceTitle}`}>
-            <div className="stat-icon"><Rocket size={20}/></div>
-            <div className="stat-copy"><strong>5</strong><span>{t.stats[1]}</span></div>
+            <div className="stat-copy"><strong>{t.experiences.length}</strong><span>{t.stats[1]}<small>{language === 'PT' ? 'Ver experiência →' : 'View experience →'}</small></span></div>
           </a>
-          <a className="stat-card stat-link" href="#tecnologias" aria-label={`${t.stats[2]}: ${t.technologiesTitle}`}>
+          <a className="stat-card stat-link" href="#tecnologias" onClick={event => navigateTo(event, 'tecnologias')}>
             <div className="stat-icon"><Code size={20}/></div>
-            <div className="stat-copy"><strong>20+</strong><span>{t.stats[2]}</span></div>
+            <div className="stat-copy"><strong>20+</strong><span>{t.stats[2]}<small>{language === 'PT' ? 'Ver tecnologias →' : 'View technologies →'}</small></span></div>
           </a>
-          <article>
-            <div className="stat-icon"><ShieldCheck size={20}/></div>
-            <div className="stat-copy"><strong>4</strong><span>{t.stats[3]}</span></div>
-          </article>
+
         </section>
 
-        <section className="section about" id="sobre">
+        <section className="section about" id="sobre" aria-labelledby="sobre-title">
           <div className="about-copy">
-            <h2>{t.aboutTitle}</h2>
+            <h2 id="sobre-title" tabIndex="-1">{t.aboutTitle}</h2>
             <div className="about-text">
               <p>{t.aboutText}</p>
             </div>
           </div>
           <div className="about-list">
-            <div className="about-list-panel">
-              <span><Workflow size={16}/> {t.aboutList[0]}</span>
-              <span><Terminal size={16}/> {t.aboutList[1]}</span>
-              <span><Cloud size={16}/> {t.aboutList[2]}</span>
-            </div>
+            <ul className="about-list-panel">
+              <li><Workflow size={16} aria-hidden="true"/> {t.aboutList[0]}</li>
+              <li><Terminal size={16} aria-hidden="true"/> {t.aboutList[1]}</li>
+              <li><Cloud size={16} aria-hidden="true"/> {t.aboutList[2]}</li>
+            </ul>
           </div>
         </section>
 
-        <section className="section case-studies" id="cases">
-          <div className="section-heading">
-            <h2>{t.casesTitle}</h2>
+        <section className="section case-studies" id="cases" aria-labelledby="cases-title">
+          <div className="section-heading text-pretty">
+            <h2 id="cases-title" tabIndex="-1">{t.casesTitle}</h2>
             <p>{t.casesSubtitle}</p>
           </div>
           <div className="cases-grid">
@@ -460,45 +628,101 @@ function App() {
                   <div><dt>{t.caseLabels[1]}</dt><dd>{item.approach}</dd></div>
                   <div><dt>{t.caseLabels[2]}</dt><dd>{item.result}</dd></div>
                 </dl>
-                <div className="case-stack">
-                  {item.stack.map(technology => <span key={technology}>{technology}</span>)}
-                </div>
+                <TagList className="case-stack" items={item.stack} />
               </article>
             ))}
           </div>
         </section>
 
-        <section className="section experience-section" id="experiencia">
-          <h2>{t.experienceTitle}</h2>
+        <section className="section personal-projects" id="projetos" aria-labelledby="projects-title">
+          <div className="section-heading text-pretty">
+            <h2 id="projects-title" tabIndex="-1">{t.projectsTitle}</h2>
+            <p>{t.projectsSubtitle}</p>
+          </div>
+          <div className="projects-grid">
+            <article className="card project-card featured-project">
+              <div className="project-heading">
+                <span className="project-icon" aria-hidden="true"><Code2 size={24} /></span>
+              </div>
+              <h3>{t.featuredProjectTitle}</h3>
+              <p>{t.featuredProjectDescription}</p>
+              <TagList className="case-stack" items={['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Firebase', 'Chart.js']} />
+              <ActionLink variant="secondary" className="project-action" href="https://github.com/marceloespnd/quality-vision" target="_blank" rel="noreferrer">
+                <FaGithub size={18} aria-hidden="true" /> {language === 'PT' ? 'Ver Quality Vision no GitHub' : 'View Quality Vision on GitHub'}
+              </ActionLink>
+            </article>
+            <article className="card project-card">
+              <div className="project-heading">
+                <span className="project-icon" aria-hidden="true"><Briefcase size={24} /></span>
+              </div>
+              <h3>{t.dashboardTitle}</h3>
+              <p>{t.dashboardDescription}</p>
+              <TagList className="case-stack" items={['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Firebase']} />
+              <ActionLink variant="secondary" className="project-action" href="https://github.com/marceloespnd/veltrix-workspace" target="_blank" rel="noreferrer">
+                <FaGithub size={18} aria-hidden="true" /> {language === 'PT' ? 'Ver Veltrix Dashboard no GitHub' : 'View Veltrix Dashboard on GitHub'}
+              </ActionLink>
+            </article>
+            <article className="card project-card">
+              <div className="project-heading">
+                <span className="project-icon" aria-hidden="true"><Wallet size={24} /></span>
+              </div>
+              <h3>{t.oikonomiaTitle}</h3>
+              <p>{t.oikonomiaDescription}</p>
+              <TagList className="case-stack" items={['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Firebase']} />
+              <ActionLink variant="secondary" className="project-action" href="https://github.com/marceloespnd/oikonomia" target="_blank" rel="noreferrer">
+                <FaGithub size={18} aria-hidden="true" /> {language === 'PT' ? 'Ver Oikonomia no GitHub' : 'View Oikonomia on GitHub'}
+              </ActionLink>
+            </article>
+          </div>
+        </section>
+
+        <section className="section experience-section" id="experiencia" aria-labelledby="experiencia-title">
+          <div className="section-bubble">
+            <h2 id="experiencia-title" tabIndex="-1">{t.experienceTitle}</h2>
+          </div>
           <div className="experiences">
             {t.experiences.map(experience => (
               <article className="experience" key={experience.company}>
                 <div className="experience-head">
-                  <div className="exp-title">
-                    <span>{experience.company}</span> - {experience.role}
-                  </div>
-                  <div className="exp-meta">
-                    <strong>{experience.year}</strong>
-                    <span>{experience.location}</span>
-                  </div>
+                  <h3 className="exp-title">
+                    <span>{experience.company}</span>
+                    <span className="experience-role">{experience.role}</span>
+                    <span className="experience-period">{experience.year}</span>
+                  </h3>
                 </div>
-                <div className="experience-details">
-                  <ul>
-                    {experience.highlights.map(highlight => (
+                <p className="experience-summary">{experience.highlights[0]}</p>
+                <details className="experience-details">
+                  <summary>{language === 'PT' ? `Ver mais sobre ${experience.company}` : `More about ${experience.company}`}</summary>
+                  {experience.positions?.map(position => (
+                    <div className="experience-position" key={position.role}>
+                      <h4>{position.role}</h4>
+                      <p>{position.period}</p>
+                      {position.highlights && <ul>{position.highlights.map(highlight => <li key={highlight}><CheckCircle size={15} /><span>{highlight}</span></li>)}</ul>}
+                      {position.tools && <TagList className="case-stack" items={position.tools} />}
+                    </div>
+                  ))}
+                  {!experience.positions && <ul>
+                    {experience.highlights.slice(1).map(highlight => (
                       <li key={highlight}>
                         <CheckCircle size={15} />
                         <span>{highlight}</span>
                       </li>
                     ))}
-                  </ul>
-                </div>
+                  </ul>}
+                  {experience.tools && (
+                    <div className="experience-tools">
+                      <p>{language === 'PT' ? 'Ferramentas e práticas' : 'Tools and practices'}</p>
+                      <TagList className="case-stack" items={experience.tools} />
+                    </div>
+                  )}
+                </details>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="section" id="tecnologias">
-          <h2>{t.technologiesTitle}</h2>
+        <section className="section" id="tecnologias" aria-labelledby="tecnologias-title">
+          <div className="section-bubble"><h2 id="tecnologias-title" tabIndex="-1">{t.technologiesTitle}</h2></div>
           <div className="skills-grid">
             {t.skillsCategories.map(({ category, icon: Icon, items, featured, tools }) => (
               <article key={category} className={`skill-category${featured ? ' featured' : ''}${tools ? ' ai-quality' : ''}`}>
@@ -509,22 +733,18 @@ function App() {
                 <div className="skill-panel">
                   {tools ? (
                     <div className="ai-quality-content">
-                      <div className="ai-tools">
-                        {tools.map(tool => <span key={tool}>{tool}</span>)}
-                      </div>
-                      <div className="ai-use-cases">
+                      <TagList className="ai-tools" items={tools} />
+                      <ul className="ai-use-cases">
                         {items.map(item => (
-                          <div key={item}>
-                            <CheckCircle size={16} />
+                          <li key={item}>
+                            <CheckCircle size={16} aria-hidden="true" />
                             <span>{item}</span>
-                          </div>
+                          </li>
                         ))}
-                      </div>
+                      </ul>
                     </div>
                   ) : (
-                    <div className="skill-items">
-                      {items.map(item => <span key={item}>{item}</span>)}
-                    </div>
+                    <TagList className="skill-items" items={items} />
                   )}
                 </div>
               </article>
@@ -532,8 +752,8 @@ function App() {
           </div>
         </section>
 
-        <section className="section education-section" id="formacao">
-          <h2>{t.educationTitle}</h2>
+        <section className="section education-section" id="formacao" aria-labelledby="formacao-title">
+          <div className="section-bubble"><h2 id="formacao-title" tabIndex="-1">{t.educationTitle}</h2></div>
           <div className="education-grid">
             {t.education.map(item => (
               <article className="education-card" key={item.title}>
@@ -555,37 +775,45 @@ function App() {
           </div>
         </section>
 
-        <section className="grid two" id="certificacoes">
+        <section className="section" id="certificacoes" aria-labelledby="certificacoes-title">
           <article className="card">
-            <h2>{t.certificationsTitle}</h2>
+            <div className="section-bubble">
+            <h2 id="certificacoes-title" tabIndex="-1">{t.certificationsTitle}</h2>
             <p className="section-intro">{t.certificationsSubtitle}</p>
+            </div>
+            <ActionLink className="certificate-action" href={`mailto:${profile.email}?subject=${encodeURIComponent(language === 'PT' ? 'Solicitação de certificados' : 'Certificate request')}`}><Mail size={16} aria-hidden="true" />{language === 'PT' ? 'Solicitar certificados' : 'Request certificates'}</ActionLink>
             <div className="certs">
               {t.certifications.map(cert => (
                 <div key={cert.name} className="cert-item">
-                  <strong>{cert.name}</strong>
-                  <span>{cert.level}</span>
+                  <h3>{cert.name}</h3>
                 </div>
               ))}
             </div>
           </article>
 
-          <article className="card" id="contato">
-            <h2>{t.contactTitle}</h2>
-            <p className="contact-copy">{t.contactText}</p>
+        </section>
+
+        <section className="section contact-section" id="contato" aria-labelledby="contato-title">
+          <article className="card">
+            <div className="section-bubble">
+            <h2 id="contato-title" tabIndex="-1">{t.contactTitle}</h2>
+            <p className="contact-copy text-pretty">{t.contactText}</p>
+            </div>
             <div className="contact-info">
-              <a href={`mailto:${profile.email}`}><Mail size={16}/> {profile.email}</a>
-              <a href={profile.linkedin} target="_blank" rel="noreferrer"><FaLinkedinIn size={16}/> LinkedIn</a>
-              <a href={profile.github} target="_blank" rel="noreferrer"><FaGithub size={16}/> GitHub</a>
-              <a href={`https://wa.me/${profile.whatsapp}`} target="_blank" rel="noreferrer"><FaWhatsapp size={16}/> WhatsApp</a>
-              <span className="location"><MapPin size={16}/> {profile.location}</span>
+              <span className="button button--secondary contact-location"><MapPin size={16} aria-hidden="true" /> {language === 'PT' ? profile.location : 'Barueri, SP, Brazil'}</span>
+              <ActionLink href={`mailto:${profile.email}`}><Mail size={16}/> {profile.email}</ActionLink>
+              <ActionLink href={profile.linkedin} target="_blank" rel="noreferrer"><FaLinkedinIn size={16}/> LinkedIn</ActionLink>
+              <ActionLink href={profile.github} target="_blank" rel="noreferrer"><FaGithub size={16}/> GitHub</ActionLink>
+              <ActionLink href={`https://wa.me/${profile.whatsapp}`} target="_blank" rel="noreferrer"><FaWhatsapp size={16}/> WhatsApp</ActionLink>
             </div>
           </article>
         </section>
+        </main>
         <footer>
-            <p>{`v${appVersion} ${t.copyright}`}</p>
+            <p><small className="footer-version">v{appVersion}</small> {t.copyright}</p>
         </footer>
       </section>
-    </main>
+    </div>
   )
 }
 
